@@ -1,11 +1,5 @@
-# Use an official OpenJDK runtime as a base image
-FROM openjdk:17-jre-slim
+FROM openjdk:17
+EXPOSE 8090
+ADD target/spring-boot-docker.jar
+ENTRYPOINT ["java","-jar","/spring-boot-docker.jar"]
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
-# Copy the application JAR file into the container at the specified working directory
-COPY myapp.jar .
-
-# Specify the command to run on container startup
-CMD ["java", "-jar", "myapp.jar"]
